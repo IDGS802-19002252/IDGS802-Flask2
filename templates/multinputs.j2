@@ -16,10 +16,10 @@
   {% from '_macro.html' import render_inputs %}
   <form action="/calcular" method="post">
     {% if showForm %}
-      {% for n in range(nInputs) %}
-      {{render_inputs(n)}}
-      {% endfor %}
-      <button type="submit">Calcular</button>
+    {% for n in range(nInputs) %}
+    {{render_inputs(n)}}
+    {% endfor %}
+    <button type="submit">Calcular</button>
     {% endif %}
   </form>
 </div>

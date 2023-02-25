@@ -1,0 +1,7 @@
+{% macro error(field) %}
+
+{% for error in field.errors %}
+  <li class="text-red-600">{{error}}</li>
+{% endfor %}
+
+{% endmacro %}

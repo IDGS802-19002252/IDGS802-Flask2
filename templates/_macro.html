@@ -11,10 +11,17 @@
 <div class="control-group">
   <div class="controls">
     <label for="{{field.name}}" class="control-label">
-      {{field.label}} - {{field(**kwargs)|safe}}
+      {{field.name}} - {{field(**kwargs)|safe}}
     </label>
   </div>
 </div>
+{% if field.errors %}
+  <ul>
+    {% for error in field.errors %}
+      <li style="color: red">{{error}}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
 {% endmacro %}
 
 {%macro render_inputs(numero)%}

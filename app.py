@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import forms as form
+import forms.UserForms as form
 from calcular import Calcular
 
 app = Flask(__name__)
@@ -13,7 +13,7 @@ def alumno():
   alumn_form=form.UserForm(request.form)
   mat = ''
   nom = ''
-  if request.method == 'POST':
+  if request.method == 'POST' and alumn_form.validate():
     mat=alumn_form.matricula.data
     nom=alumn_form.nombre.data
   return render_template('alumnos.html', form = alumn_form, mat = mat, nom = nom)
@@ -27,12 +27,12 @@ def multinputs():
     showForm = True
     nInputs = int(request.form.get('numero'))
 
-  return render_template('multinputs.jinja', showForm = showForm, nInputs = nInputs)
+  return render_template('multinputs.j2', showForm = showForm, nInputs = nInputs)
 
 @app.route('/calcular', methods=['POST'])
 def calcular():
   calc = Calcular(request.form)
-  return render_template('calcular.jinja',
+  return render_template('calcular.j2',
                         minimo = calc.minimo(),
                         maximo = calc.maximo(),
                         promedio = calc.promedio(),
